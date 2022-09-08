@@ -22,4 +22,10 @@ To start the project please run ``` yarn start ``` or ``` npm start ```
 
 ---
 
+### Tests
+
+I added some tests, if you want to run them, please run ``` yarn test ``` or ``` npm test ```
+
+---
+
 That's all. Thanks for your time!
