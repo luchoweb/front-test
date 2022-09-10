@@ -24,34 +24,38 @@ const CardRuling = ({ data, view }) => {
     >
       <div className="card-ruling__overlay">
         <div className="card-ruling__container">
-          <div className="card-ruling__head">
-            <p className="card-ruling__head-title">
-              <span className={`card-ruling__head-title-icon card-ruling__head-title-icon--bg-${ isPositiveVotes ? 'green' : 'yellow' }`}>
-                <img src={`/assets/img/thumbs-${ isPositiveVotes ? 'up' : 'down' }.svg`} />
-              </span>
-              <span className="card-ruling__head-title-name">{data.name}</span>
+          <div className="card-ruling__text">
+            <div className="card-ruling__head">
+              <p className="card-ruling__head-title">
+                <span className={`card-ruling__head-title-icon card-ruling__head-title-icon--bg-${ isPositiveVotes ? 'green' : 'yellow' }`}>
+                  <img src={`/assets/img/thumbs-${ isPositiveVotes ? 'up' : 'down' }.svg`} alt="thumb" />
+                </span>
+                <span className="card-ruling__head-title-name">{data.name}</span>
+              </p>
+            </div>
+
+            <p className="card-ruling__description">
+              { data.description }
             </p>
           </div>
 
-          <p className="card-ruling__description">
-            { data.description }
-          </p>
+          <div className="card-ruling__last-group">
+            {!isVoteSaved && (
+              <p className="card-ruling__last-updated">
+                { moment(data.lastUpdated).fromNow() } in
+                <span className="card-ruling__category">
+                  { data.category }
+                </span>
+              </p>
+            )}
 
-          {!isVoteSaved && (
-            <p className="card-ruling__last-updated">
-              { moment(data.lastUpdated).fromNow() } in
-              <span className="card-ruling__category">
-                { data.category }
-              </span>
-            </p>
-          )}
-
-          <VoteNow
-            idVote={data.id}
-            handleSaveVote={handleSaveVote}
-            setIsVoteSaved={setIsVoteSaved}
-            isVoteSaved={isVoteSaved}
-          />
+            <VoteNow
+              idVote={data.id}
+              handleSaveVote={handleSaveVote}
+              setIsVoteSaved={setIsVoteSaved}
+              isVoteSaved={isVoteSaved}
+            />
+          </div>
 
           <BarRulings votes={data.votes} />
         </div>

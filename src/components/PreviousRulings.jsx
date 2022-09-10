@@ -10,7 +10,7 @@ const PreviousRulings = () => {
   const [rulings, setRulings] = useState(rulingsStored);
 
   const viewOptions = ['list', 'grid'];
-  const [view, setView] = useState(viewOptions[1]);
+  const [view, setView] = useState(viewOptions[0]);
 
   useEffect(() => {
     if ( !rulings ) {

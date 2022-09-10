@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   gap: .5rem;
+  justify-content: flex-end;
 
   button {
     appearance: none;
@@ -67,6 +68,7 @@
 
     &__thanks {
       font-size: .7rem;
+      margin: 0 0 .3rem 0;
     }
 
     &__btn {
