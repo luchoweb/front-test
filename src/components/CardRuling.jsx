@@ -5,8 +5,8 @@ import BarRulings from "./BarRulings";
 
 const CardRuling = ({ data }) => {
   const isPositiveVotes = data.votes.positive >= data.votes.negative;
-  const truncateLimit = 16;
-  const truncateDots = data.name.length > truncateLimit ? '...' : '';
+  const truncateTitleLimit = 16;
+  const truncateDots = data.name.length > truncateTitleLimit ? '...' : '';
 
   return (
     <div
@@ -22,7 +22,7 @@ const CardRuling = ({ data }) => {
               <img src={`/assets/img/thumbs-${ isPositiveVotes ? 'up' : 'down' }.svg`} />
             </span>
             <span>
-              {`${ data.name.substr(0, truncateLimit) }${ truncateDots }`}
+              {`${ data.name.substr(0, truncateTitleLimit) }${ truncateDots }`}
             </span>
           </p>
         </div>
@@ -37,9 +37,9 @@ const CardRuling = ({ data }) => {
             { data.category }
           </span>
         </p>
-      </div>
 
-      <BarRulings votes={data.votes} />
+        <BarRulings votes={data.votes} />
+      </div>
     </div>
   )
 }

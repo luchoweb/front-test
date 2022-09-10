@@ -1,0 +1,31 @@
+.bar-rulings {
+  align-self: center;
+  display: flex;
+  font-weight: var(--fw-light);
+  margin: .5rem calc(var(--padding-right-card) * -1) 0 0;
+  width: calc(100% + var(--padding-right-card));
+
+  &__votes {
+    padding: .5rem .7rem;
+    min-width: 4rem;
+
+    &--positive {
+      background-color: rgba(var(--color-green-positive), 0.5);
+    }
+
+    &--negative {
+      background-color: rgba(var(--color-yellow-negative), 0.5);
+      text-align: right;
+    }
+  }
+
+  &__percent {
+    &--positive {
+      margin-left: .5rem;
+    }
+
+    &--negative {
+      margin-right: .5rem;
+    }
+  }
+}
