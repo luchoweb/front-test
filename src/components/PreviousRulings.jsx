@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import CardRuling from "./CardRuling";
 
 import "../styles/components/PreviousRulings.scss";
+import SelectView from "./SelectView";
 
 const PreviousRulings = () => {
   const rulingsStored = localStorage.getItem('rulings');
   const [rulings, setRulings] = useState(rulingsStored);
-  const [view, setView] = useState('');
+
+  const viewOptions = ['list', 'grid'];
+  const [view, setView] = useState(viewOptions[1]);
 
   useEffect(() => {
     if ( !rulings ) {
@@ -25,10 +28,18 @@ const PreviousRulings = () => {
   }, []);
 
   return (
-    <main role="main">
-      <h2>Previous Rulings</h2>
+    <main role="main" className="main">
+      <div className="main__head">
+        <h2>Previous Rulings</h2>
+        
+        <SelectView
+          defaultOption={view}
+          options={viewOptions}
+          setView={setView}
+        />
+      </div>
 
-      <ul className={`previous-rulings${view}`}>
+      <ul className={`previous-rulings previous-rulings--${view}`}>
         { rulings ? rulings.map(ruling => (
           <li key={ ruling.id }>
             <CardRuling data={ruling} />
