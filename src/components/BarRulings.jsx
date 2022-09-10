@@ -2,8 +2,8 @@ import "../styles/components/BarRulings.scss";
 
 const BarRulings = ({ votes }) => {
   const totalVotes = votes.positive + votes.negative;
-  const negativePercent = ((votes.negative / totalVotes) * 100).toFixed(0);
-  const positivePercent = ((votes.positive / totalVotes) * 100).toFixed(0);
+  const negativePercent = ((votes.negative / totalVotes) * 100).toFixed(1);
+  const positivePercent = ((votes.positive / totalVotes) * 100).toFixed(1);
 
   return (
     <div className="bar-rulings">
