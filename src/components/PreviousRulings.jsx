@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 
 import CardRuling from "./CardRuling";
 
+import "../styles/components/PreviousRulings.scss";
+
 const PreviousRulings = () => {
   const rulingsStored = localStorage.getItem('rulings');
   const [rulings, setRulings] = useState(rulingsStored);
+  const [view, setView] = useState('');
 
   useEffect(() => {
     if ( !rulings ) {
@@ -22,19 +25,19 @@ const PreviousRulings = () => {
   }, []);
 
   return (
-    <div className="max-centered">
-      <main role="main">
-        <h2>Previous Rulings</h2>
+    <main role="main">
+      <h2>Previous Rulings</h2>
 
-        <ul className="previous-rulings">
-          { rulings ? rulings.map(ruling => (
-            <CardRuling data={ruling} key={ ruling.name } />
-          )) : (
-            <p>There are not previous rulings to show.</p>
-          )}
-        </ul>
-      </main>
-    </div>
+      <ul className={`previous-rulings${view}`}>
+        { rulings ? rulings.map(ruling => (
+          <li key={ ruling.name }>
+            <CardRuling data={ruling} />
+          </li>
+        )) : (
+          <p>There are not previous rulings to show.</p>
+        )}
+      </ul>
+    </main>
   )
 }
 

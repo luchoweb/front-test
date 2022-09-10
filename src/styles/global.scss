@@ -9,6 +9,10 @@
   --color-light-background: rgba(255, 255, 255, .4);
   --color-lighter-background: rgba(255, 255, 255, .8);
   --color-white: rgba(255, 255, 255, 1);
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-bold: 700;
 }
 
 html, body {
@@ -17,7 +21,7 @@ html, body {
   background-color: var(--color-white);
   font-family: 'Lato', sans-serif;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: var(--fw-normal);
 }
 
 body {
@@ -90,7 +94,7 @@ hr {
     margin: 2.5rem 0 0;
     color: var(--color-white);
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: var(--fw-normal);
     line-height: 2.5rem;
   }
 
@@ -204,11 +208,11 @@ hr {
     width: 140%;
     height: 140%;
     background:
-        center no-repeat linear-gradient(
-            var(--color-dark-background),
-            var(--color-dark-background)
-        ),
-        -25vw 0/160vw no-repeat url('../../public/assets/img/pope-francis.png');
+      center no-repeat linear-gradient(
+        var(--color-dark-background),
+        var(--color-dark-background)
+      ),
+      -25vw 0/160vw no-repeat url('../../public/assets/img/pope-francis.png');
     filter: blur(1rem);
   }
 
@@ -220,14 +224,14 @@ hr {
 
   &__hairline {
     margin: 0;
-    font-weight: 300;
+    font-weight: var(--fw-light);
     white-space: nowrap;
   }
 
   &__title {
     margin: 0;
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: var(--fw-normal);
     line-height: 1;
   }
 
@@ -238,13 +242,13 @@ hr {
     margin: 1rem 0;
     -webkit-box-orient: vertical;
     font-size: 1.25rem;
-    font-weight: 300;
+    font-weight: var(--fw-light);
     -webkit-line-clamp: 6;
     text-overflow: ellipsis;
   }
 
   &__cta {
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
 
   &__buttons {
@@ -284,7 +288,7 @@ hr {
     padding: 0 .25rem 0 0;
     background-color: var(--color-dark-background);
     color: var(--color-white);
-    font-weight: 300;
+    font-weight: var(--fw-light);
     text-transform: uppercase;
 
     &:after {
@@ -310,13 +314,13 @@ hr {
   &__number {
     color: var(--color-dark-gray);
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: var(--fw-normal);
   }
 
   &__desc {
     color: var(--color-dark-gray);
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: var(--fw-light);
     margin-left: .5rem;
   }
 }
@@ -350,7 +354,7 @@ hr {
         & > .banner__hairline {
           color: var(--color-dark-gray);
           font-size: 1.25rem;
-          font-weight: 300;
+          font-weight: var(--fw-light);
           letter-spacing: -.07rem;
         }
 
@@ -371,7 +375,7 @@ hr {
         margin: 0;
         color: var(--color-dark-gray);
         font-size: 1.25rem;
-        font-weight: 300;
+        font-weight: var(--fw-light);
         letter-spacing: -.05rem;
       }
     }
@@ -392,7 +396,7 @@ hr {
         margin: 0 0 1rem;
         color: var(--color-dark-gray);
         font-size: 2rem;
-        font-weight: 400;
+        font-weight: var(--fw-normal);
         text-align: center;
       }
 
@@ -430,7 +434,7 @@ main {
   h3,
   h4 {
     color: var(--color-dark-gray);
-    font-weight: 300;
+    font-weight: var(--fw-light);
   }
 
   h2 {
@@ -535,7 +539,7 @@ main {
     &__more-info {
       display: inline-block;
       margin: 0;
-      font-weight: 300;
+      font-weight: var(--fw-light);
     }
 
     &__buttons {
@@ -664,7 +668,7 @@ main {
         width: fit-content;
         margin: 0 1rem 0 0;
         font-size: 1rem;
-        font-weight: 300;
+        font-weight: var(--fw-light);
         text-align: right;
 
         &:last-child {

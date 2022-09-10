@@ -1,0 +1,19 @@
+.previous-rulings {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  justify-content: center;
+
+  @media all and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media all and (min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--list {
+    display: block;
+    gap: 0;
+  }
+}

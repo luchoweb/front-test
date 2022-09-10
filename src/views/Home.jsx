@@ -8,9 +8,11 @@ const HomeView = () => {
   return (
     <Layout>
       <Hero />
-      <BannerTop />
-      <PreviousRulings />
-      <BannerBottom />
+      <div className="max-centered">
+        <BannerTop />
+        <PreviousRulings />
+        <BannerBottom />
+      </div>
     </Layout>
   )
 }

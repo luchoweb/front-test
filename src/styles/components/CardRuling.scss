@@ -1,0 +1,44 @@
+.card-ruling {
+  background-size: cover;
+  color: var(--color-white);
+  height: 300px;
+  width: 300px;
+
+  p {
+    margin: 0;
+  }
+
+  &__head {
+    &-title {
+      font-size: 2rem;
+      font-weight: var(--fw-normal);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__last-update {
+    font-weight: var(--fw-bold);
+  }
+
+  &__category {
+    display: inline-block;
+    margin-left: .2rem;
+    text-transform: capitalize;
+  }
+
+  @media all and (min-width: 768px) {
+    width: 100%;
+  }
+
+  @media all and (min-width: 1100px) {}
+}
