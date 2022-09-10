@@ -1,7 +1,8 @@
 import moment from "moment/moment";
 
-import "../styles/components/CardRuling.scss";
 import BarRulings from "./BarRulings";
+
+import "../styles/components/CardRuling.scss";
 
 const CardRuling = ({ data }) => {
   const isPositiveVotes = data.votes.positive >= data.votes.negative;

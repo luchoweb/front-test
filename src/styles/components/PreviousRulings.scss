@@ -1,11 +1,14 @@
 .previous-rulings {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: nowrap;
   gap: 1.5rem;
-  justify-content: center;
+  overflow-x: scroll;
 
   @media all and (min-width: 768px) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    overflow-x: hidden;
   }
 
   @media all and (min-width: 1100px) {
