@@ -3,9 +3,9 @@ const BannerBottom = () => {
     <div className="max-centered">
       <aside className="banner banner-bottom" role="doc-tip" aria-label="Submit a name">
         <img
-          srcset="/assets/img/bg-people.png 750w, /assets/img/bg-people.@2x.png 1440w"
+          srcSet="/assets/img/bg-people.png 750w, /assets/img/bg-people.@2x.png 1440w"
           sizes="(min-width: 750px) 1440px, 100vw"
-          class="banner__background" src="/assets/img/bg-people.png"
+          className="banner__background" src="/assets/img/bg-people.png"
           alt=""
           role="none"
         />

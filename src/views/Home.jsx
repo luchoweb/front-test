@@ -1,7 +1,7 @@
 import Layout from "./Layout";
 import Hero from "../components/Hero";
 import BannerTop from "../components/BannerTop";
-import PeopleList from "../components/PeopleList";
+import PreviousRulings from "../components/PreviousRulings";
 import BannerBottom from "../components/BannerBottom";
 
 const HomeView = () => {
@@ -9,7 +9,7 @@ const HomeView = () => {
     <Layout>
       <Hero />
       <BannerTop />
-      <PeopleList />
+      <PreviousRulings />
       <BannerBottom />
     </Layout>
   )
