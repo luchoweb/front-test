@@ -30,7 +30,7 @@ const PreviousRulings = () => {
 
       <ul className={`previous-rulings${view}`}>
         { rulings ? rulings.map(ruling => (
-          <li key={ ruling.name }>
+          <li key={ ruling.id }>
             <CardRuling data={ruling} />
           </li>
         )) : (
