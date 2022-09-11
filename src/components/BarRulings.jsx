@@ -14,7 +14,10 @@ const BarRulings = ({ votes }) => {
         }}
       >
         <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
-        <span className="bar-rulings__percent bar-rulings__percent--positive">
+        <span
+          className="bar-rulings__percent bar-rulings__percent--positive"
+          data-testid="bar-rulings-percent-positive"
+        >
           { positivePercent }%
         </span>
       </div>
@@ -25,7 +28,10 @@ const BarRulings = ({ votes }) => {
           width: `${negativePercent}%`
         }}
       >
-        <span className="bar-rulings__percent bar-rulings__percent--negative">
+        <span
+          className="bar-rulings__percent bar-rulings__percent--negative"
+          data-testid="bar-rulings-percent-negative"
+        >
           { negativePercent }%
         </span>
         <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
