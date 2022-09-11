@@ -17,6 +17,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <button
         className={`vote-now__btn vote-now__btn--positive ${voteSelected.id === voteId && voteSelected.isPositiveVote ? 'vote-now__btn--selected' : ''}`}
         onClick={() => handleSelectVote({voteId, isPositiveVote: true})}
+        data-testid="btn-vote-positive"
       >
         <img src="/assets/img/thumbs-up.svg" alt="thumbs up" />
       </button>
@@ -24,6 +25,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <button
         className={`vote-now__btn vote-now__btn--negative ${voteSelected.id === voteId && !voteSelected.isPositiveVote ? 'vote-now__btn--selected' : ''}`}
         onClick={() => handleSelectVote({voteId, isPositiveVote: false})}
+        data-testid="btn-vote-negative"
       >
         <img src="/assets/img/thumbs-down.svg" alt="thumbs down" />
       </button>
@@ -31,7 +33,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <button
         className="vote-now__btn vote-now__btn--vote"
         disabled={isDisabledBtnVoteNow}
-        onClick={() => handleSaveVote({ isPositiveVote: voteSelected.isPositiveVote })}
+        onClick={() => handleSaveVote({ isPositiveVote: voteSelected.isPositiveVote })}data-testid="btn-vote-now"
       >
         Vote Now
       </button>
@@ -42,6 +44,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <button
         className="vote-now__btn vote-now__btn--vote"
         onClick={() => setIsVoteSaved(false)}
+        data-testid="btn-vote-again"
       >
         Vote Again
       </button>
