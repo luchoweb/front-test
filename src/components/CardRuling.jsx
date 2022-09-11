@@ -49,11 +49,13 @@ const CardRuling = ({ ruling, view }) => {
                 <span className={`card-ruling__head-title-icon card-ruling__head-title-icon--bg-${ isVotesPositives ? 'green' : 'yellow' }`}>
                   <img src={`/assets/img/thumbs-${ isVotesPositives ? 'up' : 'down' }.svg`} alt="thumb" />
                 </span>
-                <span className="card-ruling__head-title-name">{data.name}</span>
+                <span className="card-ruling__head-title-name" data-testid="card-ruling-name">
+                  {data.name}
+                </span>
               </p>
             </div>
 
-            <p className="card-ruling__description">
+            <p className="card-ruling__description" data-testid="card-ruling-description">
               { data.description }
             </p>
           </div>
@@ -61,8 +63,10 @@ const CardRuling = ({ ruling, view }) => {
           <div className="card-ruling__last-group">
             {!isVoteSaved && (
               <p className="card-ruling__last-updated">
-                { moment(lastUpdated).fromNow() } in
-                <span className="card-ruling__category">
+                <span data-testid="card-ruling-last-update">
+                  { moment(lastUpdated).fromNow() }
+                </span> in
+                <span className="card-ruling__category" data-testid="card-ruling-category">
                   { data.category }
                 </span>
               </p>
