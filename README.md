@@ -16,7 +16,7 @@ Open your terminal and clone the repository:
 git clone https://github.com/luchoweb/front-test.git
 ```
 
-Move to the project folder ```cd front-test```  and install the modules ```yarn install``` or ``` npm install ```
+Move to the project folder ```cd front-test```  and install the modules by running ```yarn install``` or ``` npm install ```
 
 So, the project needs at least one enviroment file, please name it **.env.development.local** and add development variables from your Firebase app config:
 
@@ -38,13 +38,13 @@ If you aren't the recruiter, please create a collection with the following schem
 ```json
   "id": "AUTOMATIC_ID_IS_RECOMMEND",
   "name": "Lucho Web",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula gravida magna.",
-  "category": "politics",
-  "picture": "cristina.png",
+  "description": "Hi there! I'm Luis, from Colombia. I've a lot of years of experience in web development.",
+  "category": "web development",
+  "picture": "luchoweb.png",
   "lastUpdated": 1234567890,
   "votes": {
-    "positive": 45,
-    "negative": 97
+    "positive": 999,
+    "negative": 1
   }
 ```
 
@@ -64,7 +64,7 @@ Finally, to start the project, please run ``` yarn start ``` or ``` npm start ``
 
 ### Tests
 
-I added some tests, if you want to run them, please run ``` yarn test ``` or ``` npm test ```
+I built some test components, if you want to run them, please run ``` yarn test ``` or ``` npm test ```
 
 ---
 
