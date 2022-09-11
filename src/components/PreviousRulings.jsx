@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore";
 import { db } from "../firebase";
+import { dispatchActions } from "../helpers";
 
 import useRulings from "../hooks/useRulings";
 
@@ -10,11 +11,13 @@ import SelectView from "./SelectView";
 import "../styles/components/PreviousRulings.scss";
 
 const PreviousRulings = () => {
+  const { UPDATE_STATE } = dispatchActions;
+
   const { state: rulings, dispatch } = useRulings();
+  const [isDataLoading, setIsDataLoading] = useState(true);
 
   const viewOptions = ['list', 'grid'];
   const [view, setView] = useState(viewOptions[0]);
-  const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
     if ( !rulings.length ) {
@@ -28,7 +31,7 @@ const PreviousRulings = () => {
 
           if ( !querySnapshot.empty ) {
             dispatch({
-              type: 'UPDATE_STATE',
+              type: UPDATE_STATE,
               payload
             });
           }

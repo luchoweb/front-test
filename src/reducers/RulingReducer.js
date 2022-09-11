@@ -1,11 +1,8 @@
-const actions = {
-  update: 'UPDATE_STATE',
-  saveVote: 'SAVE_VOTE'
-}
+import { dispatchActions } from "../helpers";
 
 const RulingReducer = (state, action) => {
   switch(action.type) {
-    case actions.update:
+    case dispatchActions.UPDATE_STATE:
       return action.payload;
     default:
       return state;
