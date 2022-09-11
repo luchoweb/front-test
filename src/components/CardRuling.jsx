@@ -6,7 +6,9 @@ import BarRulings from "./BarRulings";
 import "../styles/components/CardRuling.scss";
 import VoteNow from "./VoteNow";
 
-const CardRuling = ({ data, view }) => {
+const CardRuling = ({ ruling, view }) => {
+  const data = ruling.data;
+  const lastUpdated = new Date(data.lastUpdated.seconds * 1000);
   const isPositiveVotes = data.votes.positive >= data.votes.negative;
 
   const [isVoteSaved, setIsVoteSaved] = useState(false);
@@ -42,7 +44,7 @@ const CardRuling = ({ data, view }) => {
           <div className="card-ruling__last-group">
             {!isVoteSaved && (
               <p className="card-ruling__last-updated">
-                { moment(data.lastUpdated).fromNow() } in
+                { moment(lastUpdated).fromNow() } in
                 <span className="card-ruling__category">
                   { data.category }
                 </span>
@@ -50,7 +52,7 @@ const CardRuling = ({ data, view }) => {
             )}
 
             <VoteNow
-              idVote={data.id}
+              idVote={ruling.id}
               handleSaveVote={handleSaveVote}
               setIsVoteSaved={setIsVoteSaved}
               isVoteSaved={isVoteSaved}

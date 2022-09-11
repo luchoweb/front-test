@@ -1,31 +1,30 @@
 import { useEffect, useState } from "react";
+import {collection, query, orderBy, onSnapshot} from "firebase/firestore";
+import { db } from "../firebase";
 
 import CardRuling from "./CardRuling";
-
-import "../styles/components/PreviousRulings.scss";
 import SelectView from "./SelectView";
 
+import "../styles/components/PreviousRulings.scss";
+
 const PreviousRulings = () => {
-  const rulingsStored = localStorage.getItem('rulings');
-  const [rulings, setRulings] = useState(rulingsStored);
+  const [rulings, setRulings] = useState(undefined);
 
   const viewOptions = ['list', 'grid'];
   const [view, setView] = useState(viewOptions[0]);
+  const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
-    if ( !rulings ) {
-      const fetchData = async () => {
-        const res = await fetch('/assets/data.json');
-        const data = await res.json();
-         if ( data )
-          setRulings(data.data);
-      }
-  
-      fetchData();
-    }
+    const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'))
+    onSnapshot(q, (querySnapshot) => {
+      setRulings(querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      })));
 
-    return () => {};
-  }, []);
+      setIsDataLoading(false);
+    });
+  }, [rulings]);
 
   return (
     <main role="main" className="main">
@@ -39,15 +38,19 @@ const PreviousRulings = () => {
         />
       </div>
 
-      <ul className={`previous-rulings previous-rulings--${view}`}>
+      { !isDataLoading ? (
+        <ul className={`previous-rulings previous-rulings--${view}`}>
         { rulings ? rulings.map(ruling => (
           <li key={ ruling.id }>
-            <CardRuling data={ruling} view={view} />
+            <CardRuling ruling={ruling} view={view} />
           </li>
         )) : (
           <p>There are not previous rulings to show.</p>
         )}
       </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </main>
   )
 }
