@@ -15,15 +15,23 @@ const PreviousRulings = () => {
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'))
-    onSnapshot(q, (querySnapshot) => {
-      setRulings(querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        data: doc.data()
-      })));
-
-      setIsDataLoading(false);
-    });
+    if ( !rulings ) {
+      try {
+        const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
+        onSnapshot(q, (querySnapshot) => {
+          setRulings(
+            querySnapshot.empty ? [] : querySnapshot.docs.map(doc => ({
+              id: doc.id,
+              data: doc.data()
+            }))
+          );
+  
+          setIsDataLoading(false);
+        });
+      } catch (error) {
+        setRulings({ error: true });
+      }
+    }
   }, [rulings]);
 
   return (
@@ -40,16 +48,16 @@ const PreviousRulings = () => {
 
       { !isDataLoading ? (
         <ul className={`previous-rulings previous-rulings--${view}`}>
-        { rulings ? rulings.map(ruling => (
+        { rulings.length ? rulings.map(ruling => (
           <li key={ ruling.id }>
             <CardRuling ruling={ruling} view={view} />
           </li>
         )) : (
-          <p>There are not previous rulings to show.</p>
+          <p>{ !rulings?.error ? 'There are not previous rulings to show.' : 'An error has occurred obtaining the information, please refresh the page.'}</p>
         )}
       </ul>
       ) : (
-        <p>Loading...</p>
+        <p>Loading previous rulings, please wait...</p>
       )}
     </main>
   )
