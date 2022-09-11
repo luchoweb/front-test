@@ -43,7 +43,7 @@ const PreviousRulings = () => {
         setIsDataLoading(false);
       }
     }
-  }, [rulings]);
+  }, []);
 
   return (
     <main role="main" className="main">

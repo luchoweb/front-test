@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/components/VoteNow.scss";
 
 const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
-  const initalStateVoteSelected = {id: 0, isPositiveVote: false};
-  const [voteSelected, setVoteSelected] = useState(initalStateVoteSelected);
+  const initalVoteSelected = {id: 0, isPositiveVote: false};
+  const [voteSelected, setVoteSelected] = useState(initalVoteSelected);
 
   const [isDisabledBtnVoteNow, setIsDisabledBtnVoteNow] = useState(true);
 
@@ -11,13 +11,6 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
     setIsDisabledBtnVoteNow(false);
     setVoteSelected({id: voteId, isPositiveVote})
   }
-
-  useEffect(() => {
-    if ( isVoteSaved ) {
-      setVoteSelected(initalStateVoteSelected);
-      setIsDisabledBtnVoteNow(true);
-    }
-  }, [isVoteSaved]);
 
   return !isVoteSaved ? (
     <div className="vote-now">
@@ -38,7 +31,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <button
         className="vote-now__btn vote-now__btn--vote"
         disabled={isDisabledBtnVoteNow}
-        onClick={() => handleSaveVote(voteId)}
+        onClick={() => handleSaveVote({ isPositiveVote: voteSelected.isPositiveVote })}
       >
         Vote Now
       </button>

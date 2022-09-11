@@ -1,20 +1,37 @@
 import { useState } from "react";
 import moment from "moment/moment";
+import { doc, updateDoc } from "firebase/firestore";
+import {db} from "../firebase";
 
 import BarRulings from "./BarRulings";
+import VoteNow from "./VoteNow";
 
 import "../styles/components/CardRuling.scss";
-import VoteNow from "./VoteNow";
 
 const CardRuling = ({ ruling, view }) => {
   const data = ruling.data;
-  const lastUpdated = new Date(data.lastUpdated.seconds * 1000);
-  const isPositiveVotes = data.votes.positive >= data.votes.negative;
+  const lastUpdated = new Date(data.lastUpdated);
+  const isVotesPositives = data.votes.positive >= data.votes.negative;
 
   const [isVoteSaved, setIsVoteSaved] = useState(false);
 
-  const handleSaveVote = (voteId) => {
-    setIsVoteSaved(true);
+  const handleSaveVote = async ({ isPositiveVote }) => {
+    const personDocRef = doc(db, 'people', ruling.id);
+
+    try {
+      setIsVoteSaved(true);
+
+      await updateDoc(personDocRef, {
+        votes: {
+          positive: isPositiveVote ? ( data.votes.positive + 1 ) : data.votes.positive,
+          negative: !isPositiveVote ? ( data.votes.negative + 1 ) : data.votes.negative,
+        },
+        lastUpdated: new Date().getTime()
+      });
+    } catch (err) {
+      setIsVoteSaved(false);
+      console.error(err);
+    }
   }
 
   return (
@@ -29,8 +46,8 @@ const CardRuling = ({ ruling, view }) => {
           <div className="card-ruling__text">
             <div className="card-ruling__head">
               <p className="card-ruling__head-title">
-                <span className={`card-ruling__head-title-icon card-ruling__head-title-icon--bg-${ isPositiveVotes ? 'green' : 'yellow' }`}>
-                  <img src={`/assets/img/thumbs-${ isPositiveVotes ? 'up' : 'down' }.svg`} alt="thumb" />
+                <span className={`card-ruling__head-title-icon card-ruling__head-title-icon--bg-${ isVotesPositives ? 'green' : 'yellow' }`}>
+                  <img src={`/assets/img/thumbs-${ isVotesPositives ? 'up' : 'down' }.svg`} alt="thumb" />
                 </span>
                 <span className="card-ruling__head-title-name">{data.name}</span>
               </p>
