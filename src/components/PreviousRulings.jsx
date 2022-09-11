@@ -30,6 +30,7 @@ const PreviousRulings = () => {
         });
       } catch (error) {
         setRulings({ error: true });
+        setIsDataLoading(false);
       }
     }
   }, [rulings]);
