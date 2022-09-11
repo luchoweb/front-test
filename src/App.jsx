@@ -3,17 +3,21 @@ import {
   Routes, Route
 } from 'react-router-dom';
 
+import { RulingProvider } from './contexts/RulingsContext';
+
 import HomeView from './views/Home';
 import NotFoundView from './views/NotFound';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={ <HomeView /> } />
-        <Route path='*' element={ <NotFoundView /> } />
-      </Routes>
-    </Router>
+    <RulingProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={ <HomeView /> } />
+          <Route path='*' element={ <NotFoundView /> } />
+        </Routes>
+      </Router>
+    </RulingProvider>
   );
 }
 

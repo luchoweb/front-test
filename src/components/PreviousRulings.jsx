@@ -2,34 +2,41 @@ import { useEffect, useState } from "react";
 import {collection, query, orderBy, onSnapshot} from "firebase/firestore";
 import { db } from "../firebase";
 
+import useRulings from "../hooks/useRulings";
+
 import CardRuling from "./CardRuling";
 import SelectView from "./SelectView";
 
 import "../styles/components/PreviousRulings.scss";
 
 const PreviousRulings = () => {
-  const [rulings, setRulings] = useState(undefined);
+  const { state: rulings, dispatch } = useRulings();
 
   const viewOptions = ['list', 'grid'];
   const [view, setView] = useState(viewOptions[0]);
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
-    if ( !rulings ) {
+    if ( !rulings.length ) {
       try {
         const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
         onSnapshot(q, (querySnapshot) => {
-          setRulings(
-            querySnapshot.empty ? [] : querySnapshot.docs.map(doc => ({
-              id: doc.id,
-              data: doc.data()
-            }))
-          );
-  
+          const payload = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data()
+          }));
+
+          if ( !querySnapshot.empty ) {
+            dispatch({
+              type: 'UPDATE_STATE',
+              payload
+            });
+          }
+
           setIsDataLoading(false);
         });
       } catch (error) {
-        setRulings({ error: true });
+        console.error(error);
         setIsDataLoading(false);
       }
     }
