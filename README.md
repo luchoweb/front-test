@@ -36,19 +36,27 @@ For the production file (**.env.production.local**), you can use the same variab
 If you aren't the recruiter, please create a collection with the following schema for the documents:
 
 ```json
-  id: AUTOMATIC_ID_IS_RECOMMEND,
-  name <string>: "Lucho Web",
-  description <string>: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula gravida magna.",
-  category <string>: "politics",
-  picture <string>: "cristina.png",
-  lastUpdated <number>: 1234567890 //milliseconds,
-  votes <map>: {
-    positive <number>: 45,
-    negative <number>: 97
+  "id": "AUTOMATIC_ID_IS_RECOMMEND",
+  "name": "Lucho Web",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula gravida magna.",
+  "category": "politics",
+  "picture": "cristina.png",
+  "lastUpdated": 1234567890,
+  "votes": {
+    "positive": 45,
+    "negative": 97
   }
 ```
 
+Schema firestore field type:
+1. name, description, category and picture: ```<string>```
+2. lastUpdate (milliseconds): ```<number>```
+3. votes: ```map```
+4. votes.positive and votes.negative: ```<number>```
+
 **NOTE**: you can create as many documents as you like, but a pager was not developed, so we recommend not exceeding 5 documents.
+
+### Ready?
 
 Finally, to start the project, please run ``` yarn start ``` or ``` npm start ```
 
