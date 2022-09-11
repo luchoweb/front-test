@@ -17,8 +17,6 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       setVoteSelected(initalStateVoteSelected);
       setIsDisabledBtnVoteNow(true);
     }
-
-    return () => {}
   }, [isVoteSaved]);
 
   return !isVoteSaved ? (
