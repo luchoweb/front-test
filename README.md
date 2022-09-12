@@ -33,6 +33,8 @@ For the production file (**.env.production.local**), you can use the same variab
 
 **IMPORTANT**: these environment files have been sent to the recruiter's email.
 
+### Additional steps
+
 If you aren't the recruiter, please create a collection with the following schema for the documents:
 
 ```json
@@ -48,10 +50,10 @@ If you aren't the recruiter, please create a collection with the following schem
   }
 ```
 
-Schema firestore field type:
+Firestore field types:
 1. name, description, category and picture: ```<string>```
 2. lastUpdate (milliseconds): ```<number>```
-3. votes: ```map```
+3. votes: ```<map>```
 4. votes.positive and votes.negative: ```<number>```
 
 **NOTE**: you can create as many documents as you like, but a pager was not developed, so we recommend not exceeding 5 documents.
@@ -62,7 +64,7 @@ Finally, to start the project please run ``` yarn start ``` or ``` npm start ```
 
 ### Deploy?
 
-To create a production build please run ``` yarn build ``` or ``` npm build ```
+To create a production build please run ``` yarn build ``` or ``` npm run build ```
 
 You can take a look at the live site [here](https://front-test-zemoga.netlify.app).
 
