@@ -2,32 +2,45 @@ import { useState } from "react";
 import moment from "moment/moment";
 import { doc, updateDoc } from "firebase/firestore";
 import {db} from "../firebase";
+import { dispatchActions } from "../helpers";
 
 import BarRulings from "./BarRulings";
 import VoteNow from "./VoteNow";
 
 import "../styles/components/CardRuling.scss";
 
-const CardRuling = ({ ruling, view }) => {
+const CardRuling = ({ ruling, dispatch, view }) => {
   const data = ruling.data;
   const lastUpdated = new Date(data.lastUpdated);
-  const isVotesPositives = data.votes.positive >= data.votes.negative;
 
   const [isVoteSaved, setIsVoteSaved] = useState(false);
 
+  const isVotesPositives = data.votes.positive >= data.votes.negative;
+
   const handleSaveVote = async ({ isPositiveVote }) => {
-    const personDocRef = doc(db, 'people', ruling.id);
-
     try {
-      setIsVoteSaved(true);
+      const { UPDATE_VOTE } = dispatchActions;
 
+      const votesUpdated = {
+        positive: isPositiveVote ? data.votes.positive + 1 : data.votes.positive,
+        negative: !isPositiveVote ? data.votes.negative + 1 : data.votes.negative
+      };
+
+      const personDocRef = doc(db, 'people', ruling.id);
       await updateDoc(personDocRef, {
-        votes: {
-          positive: isPositiveVote ? ( data.votes.positive + 1 ) : data.votes.positive,
-          negative: !isPositiveVote ? ( data.votes.negative + 1 ) : data.votes.negative,
-        },
-        lastUpdated: new Date().getTime()
+        lastUpdated: new Date().getTime(),
+        votes: votesUpdated
       });
+
+      dispatch({
+        type: UPDATE_VOTE,
+        payload: {
+          docId: ruling.id,
+          votes: votesUpdated
+        }
+      });
+
+      setIsVoteSaved(true);
     } catch (err) {
       setIsVoteSaved(false);
       console.error(err);
@@ -73,7 +86,7 @@ const CardRuling = ({ ruling, view }) => {
             )}
 
             <VoteNow
-              idVote={ruling.id}
+              voteId={ruling.id}
               handleSaveVote={handleSaveVote}
               setIsVoteSaved={setIsVoteSaved}
               isVoteSaved={isVoteSaved}

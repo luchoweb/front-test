@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {collection, query, orderBy, onSnapshot} from "firebase/firestore";
+import {collection, query, orderBy, getDocs} from "firebase/firestore";
 import { db } from "../firebase";
 import { dispatchActions } from "../helpers";
 
@@ -20,12 +20,13 @@ const PreviousRulings = () => {
 
   useEffect(() => {
     if ( !rulings.length ) {
-      setIsDataLoading(true);
+      const colRef = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
+      const { UPDATE_STATE } = dispatchActions;
 
-      try {
-        const { UPDATE_STATE } = dispatchActions;
-        const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
-        onSnapshot(q, (querySnapshot) => {
+      const getData = async () => {
+        const querySnapshot = await getDocs(colRef);
+        
+        if ( querySnapshot ) {
           const payload = querySnapshot.docs.map(doc => ({
             id: doc.id,
             data: doc.data()
@@ -39,11 +40,10 @@ const PreviousRulings = () => {
           }
 
           setIsDataLoading(false);
-        });
-      } catch (error) {
-        console.error(error);
-        setIsDataLoading(false);
+        }
       }
+
+      getData();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +65,7 @@ const PreviousRulings = () => {
         <ul className={`previous-rulings previous-rulings--${view}`}>
         { rulings.length ? rulings.map(ruling => (
           <li key={ ruling.id }>
-            <CardRuling ruling={ruling} view={view} />
+            <CardRuling ruling={ruling} dispatch={dispatch} view={view} />
           </li>
         )) : (
           <p>{ !rulings?.error ? 'There are not previous rulings to show.' : 'An error has occurred obtaining the information, please refresh the page.'}</p>

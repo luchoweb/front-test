@@ -9,7 +9,13 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
 
   const handleSelectVote = ({ voteId, isPositiveVote }) => {
     setIsDisabledBtnVoteNow(false);
-    setVoteSelected({id: voteId, isPositiveVote})
+    setVoteSelected({id: voteId, isPositiveVote});
+  }
+
+  const handleVoteAgain = () => {
+    setIsVoteSaved(false);
+    setVoteSelected(initalVoteSelected);
+    setIsDisabledBtnVoteNow(true);
   }
 
   return !isVoteSaved ? (
@@ -43,7 +49,7 @@ const VoteNow = ({ voteId, handleSaveVote, isVoteSaved, setIsVoteSaved }) => {
       <p className="vote-now__thanks">Thank you for your vote!</p>
       <button
         className="vote-now__btn vote-now__btn--vote"
-        onClick={() => setIsVoteSaved(false)}
+        onClick={() => handleVoteAgain()}
         data-testid="btn-vote-again"
       >
         Vote Again
