@@ -11,8 +11,6 @@ import SelectView from "./SelectView";
 import "../styles/components/PreviousRulings.scss";
 
 const PreviousRulings = () => {
-  const { UPDATE_STATE } = dispatchActions;
-
   const { state: rulings, dispatch } = useRulings();
   const [isDataLoading, setIsDataLoading] = useState(true);
 
@@ -22,6 +20,7 @@ const PreviousRulings = () => {
   useEffect(() => {
     if ( !rulings.length ) {
       try {
+        const { UPDATE_STATE } = dispatchActions;
         const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
         onSnapshot(q, (querySnapshot) => {
           const payload = querySnapshot.docs.map(doc => ({
@@ -43,6 +42,8 @@ const PreviousRulings = () => {
         setIsDataLoading(false);
       }
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
