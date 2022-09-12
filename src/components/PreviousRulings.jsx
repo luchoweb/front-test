@@ -12,6 +12,7 @@ import "../styles/components/PreviousRulings.scss";
 
 const PreviousRulings = () => {
   const { state: rulings, dispatch } = useRulings();
+  
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   const viewOptions = ['list', 'grid'];
@@ -42,6 +43,8 @@ const PreviousRulings = () => {
         setIsDataLoading(false);
       }
     }
+
+    return () => setIsDataLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
