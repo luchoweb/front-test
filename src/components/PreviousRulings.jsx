@@ -13,13 +13,15 @@ import "../styles/components/PreviousRulings.scss";
 const PreviousRulings = () => {
   const { state: rulings, dispatch } = useRulings();
   
-  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const viewOptions = ['list', 'grid'];
   const [view, setView] = useState(viewOptions[0]);
 
   useEffect(() => {
     if ( !rulings.length ) {
+      setIsDataLoading(true);
+
       try {
         const { UPDATE_STATE } = dispatchActions;
         const q = query(collection(db, 'people'), orderBy('lastUpdated', 'desc'));
@@ -43,8 +45,6 @@ const PreviousRulings = () => {
         setIsDataLoading(false);
       }
     }
-
-    return () => setIsDataLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
