@@ -137,7 +137,7 @@ $list-title-padding-left: 16rem;
       background-position: 0% 40%;
       background-size: 30%;
       background-repeat: no-repeat;
-      height: 180px;
+      height: 155px;
 
       .card-ruling {
         &__overlay {
@@ -161,9 +161,11 @@ $list-title-padding-left: 16rem;
         &__head {
           &-title {
             font-size: 1.8rem;
+            font-weight: var(--fw-normal);
             
             &-name {
               padding-left: calc($list-title-padding-left - 3.5rem);
+              padding-top: 1rem;
 
               @media all and (min-width: 1100px) {
                 padding-left: $list-title-padding-left;
@@ -171,20 +173,13 @@ $list-title-padding-left: 16rem;
             }
 
             &-icon {
-              margin: -2.7rem 0 0 -.5rem;
-              line-height: 3.3rem;
+              margin: -.7rem 0 0 -.5rem;
+              line-height: 3rem;
               height: 40px;
               width: 40px;
 
               img {
-                height: 25px;
-              }
-
-              @media all and (min-width: 1100px) {
-                margin: -.4rem 0 0 -.5rem;
-                line-height: 2.3rem;
-                height: 45px;
-                width: 45px;
+                height: 22px;
               }
             }
           }
@@ -192,6 +187,7 @@ $list-title-padding-left: 16rem;
 
         &__description {
           font-size: 1rem;
+          font-weight: var(--fw-light);
           padding-left: calc($list-title-padding-left - 1rem);
 
           @media all and (min-width: 1100px) {
@@ -234,6 +230,25 @@ $list-title-padding-left: 16rem;
 
         img {
           height: 25px;
+        }
+      }
+    }
+  }
+
+  @media all and (min-width: 1100px) {
+    &--list {
+      height: 190px;
+
+      .card-ruling {
+        &__head {
+          &-title {
+            &-icon {
+              margin-top: -.7rem;
+              line-height: 2.5rem;
+              height: 45px;
+              width: 45px;
+            }
+          }
         }
       }
     }
