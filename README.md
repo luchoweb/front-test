@@ -58,7 +58,13 @@ Schema firestore field type:
 
 ### Ready?
 
-Finally, to start the project, please run ``` yarn start ``` or ``` npm start ```
+Finally, to start the project please run ``` yarn start ``` or ``` npm start ```
+
+### Deploy?
+
+To create a production build please run ``` yarn build ``` or ``` npm build ```
+
+You can take a look at the live site [here](https://front-test-zemoga.netlify.app).
 
 ---
 
